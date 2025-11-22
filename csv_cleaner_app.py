@@ -66,7 +66,8 @@ def load_data_preview(file):
             null_sum_fig = px.bar(x=null_summary.index, y=null_summary.values,
                                 labels={'x': 'Column', 'y': 'Null Count'})
             st.plotly_chart(null_sum_fig)
-    
+        else: 
+            st.success("No Null Values Found")
 
     
 # Create CSV uploader
