@@ -17,9 +17,9 @@ Current Features
 - Numeric column cleaning options with custom value support
 - Text column cleaning options with custom input support
 - Data formatting options
+- Drop operation options
 
 Planned features
-- Drop operations
 - Preview of cleaned data
 - Ability to download cleaned data
 - Restart session data
