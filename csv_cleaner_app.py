@@ -227,4 +227,42 @@ if uploaded:
 
                 # Save cleaned dataframe state
                 st.session_state.cleaned_df = cleaned_df
+    
+    # Create data formatting column
+    with cleaning_col3:
+        st.write("**Data Formatting**")
+
+        # Get text columns
+        text_cols = cleaned_df.select_dtypes(include=['object']).columns.tolist()
+
+        if text_cols:
+            # Create selectbox for data formatting options
+            format_method = st.selectbox(
+                "Format all text columns:",
+                [
+                    "Uppercase",
+                    "Lowercase",
+                    "Title Case",
+                    "Strip Whitespace"
+                ], key="format_method"
+            )
+
+            # Create button to apply data formatting
+            if st.button("Apply to All Text", type='primary', key='apply_format'):
+                for col in text_cols:
+                    # Format uppercase
+                    if format_method == "Uppercase":
+                        cleaned_df[col] = cleaned_df[col].str.upper()
+                    # Format lowercase
+                    if format_method == "Lowercase":
+                        cleaned_df[col] = cleaned_df[col].str.lower()
+                    # Format title case
+                    if format_method == "Title Case":
+                        cleaned_df[col] = cleaned_df[col].str.title()
+                    # Format strip whitespace
+                    if format_method == "Strip Whitespace":
+                        cleaned_df[col] = cleaned_df[col].str.strip()
+
+                # Save cleaned data
+                st.session_state.cleaned_df = cleaned_df
 
