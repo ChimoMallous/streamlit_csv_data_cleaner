@@ -276,6 +276,9 @@ if uploaded:
             # Create button to apply data formatting
             if st.button("Apply to All Text", type='primary', key='apply_format'):
                 for col in text_cols:
+                    # Convert cols to string before formatting
+                    cleaned_df[col] = cleaned_df[col].astype(str)
+
                     # Format uppercase
                     if format_method == "Uppercase":
                         cleaned_df[col] = cleaned_df[col].str.upper()
@@ -323,3 +326,18 @@ if uploaded:
     
     # Load cleaned data preview
     load_cleaned_preview(cleaned_df)
+
+    # Create columns for download and reset buttons
+    button_col1, button_col2, button_col3 = st.columns(3)
+
+    # Create button to reset cleaned dataframe
+    with button_col1:
+        if st.button("Reset Cleaned Dataframe"):
+            if 'cleaned_df' in st.session_state:
+                del st.session_state.cleaned_df
+                st.rerun()
+    
+    # Create button to download cleaned csv data
+    with button_col3:
+        csv = st.session_state.cleaned_df.to_csv(index=False)
+        st.download_button("Download Current Cleaned CSV", csv, "cleaned_data.csv", "text/csv")    
