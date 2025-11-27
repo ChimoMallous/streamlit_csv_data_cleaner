@@ -35,19 +35,23 @@ def load_data_preview(file):
     text_null_count = st.session_state.original_df.select_dtypes(include=['object']).isnull().sum().sum()
     total_null_count = st.session_state.original_df.isnull().sum().sum()
     total_duplicate_count = st.session_state.original_df.duplicated().sum()
+    total_row_count = st.session_state.original_df.shape[0]
+    total_column_count = st.session_state.original_df.shape[1]
 
     # Display null data info
-    info_col1, info_col2, info_col3, info_col4 = st.columns(4)
+    st.subheader("Original Data Statistics")
+    info_col1, info_col2, info_col3 = st.columns(3)
 
-    with info_col1:
-        st.metric("Numerical Null Count:", f"{num_null_count:,}")
-    with info_col2:
-        st.metric("Text Null Count:", f"{text_null_count:,}")
-    with info_col3:
-        st.metric("Total Null Count:", f"{total_null_count:,}")
-    with info_col4:
-        st.metric("Total Duplicate Count:", f"{total_duplicate_count:,}")
+    info_col2.metric("Numerical Null Count:", f"{num_null_count:,}")
+    info_col1.metric("Text Null Count:", f"{text_null_count:,}")
+    info_col1.metric("Total Null Count:", f"{total_null_count:,}")
+    info_col3.metric("Total Duplicate Count:", f"{total_duplicate_count:,}")
+    info_col2.metric("Total Row Count:", f"{total_row_count:,}")
+    info_col3.metric("Total Column Count:", f"{total_column_count:,}")
     
+    
+    st.divider()
+
     # Null columns charts
     null_chart_col1, null_chart_col2 = st.columns(2)
 
@@ -77,14 +81,16 @@ def load_data_preview(file):
             "Missing": [st.session_state.original_df[col].isnull().sum() for col in cols_with_nulls],
             "Filled": [st.session_state.original_df[col].notnull().sum() for col in cols_with_nulls]  
         })
-        null_vs_fill_fig = px.bar(
-            col_stats,
-            x="Column",
-            y=["Missing", "Filled"],
-            barmode="stack",
-            color_discrete_sequence=["#B80000", "#006747"])
-        
-        st.plotly_chart(null_vs_fill_fig)
+
+        if cols_with_nulls:
+            null_vs_fill_fig = px.bar(
+                col_stats,
+                x="Column",
+                y=["Missing", "Filled"],
+                barmode="stack",
+                color_discrete_sequence=["#B80000", "#006747"])
+            st.plotly_chart(null_vs_fill_fig)
+        else: st.success("No Null Values Found")
 
 # Create function to load cleaned data and cleaned data preview
 def load_cleaned_preview(df):
@@ -104,13 +110,19 @@ def load_cleaned_preview(df):
     num_null_count = df.select_dtypes(include=['int64', 'float64']).isnull().sum().sum()
     total_null_count = df.isnull().sum().sum()
     total_duplicate_count = df.duplicated().sum()
+    total_row_count = df.shape[0]
+    total_column_count = df.shape[1]
 
     # Display null information
-    data_col1, data_col2, data_col3, data_col4 = st.columns(4)
-    data_col1.metric("Num Null Count:", f"{num_null_count:,}")
-    data_col2.metric("Text Null Count:", f"{text_null_count:,}")
-    data_col3.metric("Total Null Count:", f"{total_null_count:,}")
-    data_col4.metric("Total Duplicate Row Count:", f"{total_duplicate_count:,}")
+    st.subheader("Cleaned Data Statistics")
+    data_col1, data_col2, data_col3 = st.columns(3)
+    data_col2.metric("Numerical Null Count:", f"{num_null_count:,}")
+    data_col1.metric("Text Null Count:", f"{text_null_count:,}")
+    data_col1.metric("Total Null Count:", f"{total_null_count:,}")
+    data_col3.metric("Total Duplicate Count:", f"{total_duplicate_count:,}")
+    data_col2.metric("Total Row Count:", f"{total_row_count:,}")
+    data_col3.metric("Total Column Count:", f"{total_column_count:,}")
+    st.divider()
 
     
 # Create CSV uploader
