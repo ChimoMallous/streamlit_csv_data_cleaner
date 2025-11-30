@@ -161,7 +161,7 @@ if st.button("Load Sample Data", type="secondary"):
 # Load data when uploaded
 if st.session_state.cleaned_df is not None:
     try:
-        load_data_preview(uploaded)
+        load_data_preview(st.session_state.original_df)
         cleaned_df = st.session_state.cleaned_df.copy()
 
     except Exception as e:
@@ -187,8 +187,8 @@ if st.session_state.cleaned_df is not None:
             text_method = st.selectbox(
                 "Select method to handle missing values in text columns:",
                 [
-                    "Fill with Mode",
                     "Fill with 'Unknown'",
+                    "Fill with Mode",
                     "Fill with Empty String",
                     "Fill with Custom Input",
                     "Forward Fill",
@@ -242,9 +242,9 @@ if st.session_state.cleaned_df is not None:
             numeric_method = st.selectbox(
                 "Select method to handle missing values in numeric columns:",
                 [
-                    "Fill with Mean",
-                    "Fill with Median",
                     "Fill with Mode",
+                    "Fill with Median",
+                    "Fill with Mean",
                     "Forward Fill",
                     "Backward Fill",
                     "Fill with Custom Value"
@@ -305,9 +305,9 @@ if st.session_state.cleaned_df is not None:
             format_method = st.selectbox(
                 "Select method to apply formatting to text columns in dataset:",
                 [
-                    "Uppercase",
-                    "Lowercase",
                     "Title Case",
+                    "Lowercase",
+                    "Uppercase",
                     "Strip Whitespace"
                 ], key="format_method"
             )
