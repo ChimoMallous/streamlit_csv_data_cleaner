@@ -1,35 +1,50 @@
-WORK IN PROGRESS
+# Streamlit CSV Cleaner (Work in Progress)
+
 This project is currently under development, see planned features for future additions.
 
-Streamlit CSV Cleaner
-
+## Overview
 This program creates an interactive CSV cleaning tool built with streamlit, pandas, and plotly to allow the user to upload and preview a CSV file, analyze null values, visualize missing data, apply a wide range of cleaning operations, and then finally download that cleaned data without having to write any code.
 
-Current Features
+## Current Features
+- Upload and preview CSV files
 - Displays first 8 rows of data
-- Shows data description
-- Summaries of:
+- Data description summary
+- Data Statistics:
     - Numerical null counts
     - Text null counts
     - Total null values
     - Duplicate row count
-- Displays bar chart of null values by column
-- Numeric column cleaning options with custom value support
-- Text column cleaning options with custom input support
-- Data formatting options
-- Drop operation options
-
-Planned features
+    - Row and column counts
+- Visualizations:
+    - Null values by column (bar chart)
+    - Missing vs filled values by column (stacked bar chart)
+- Data cleaning options:
+    - Numeric column cleaning with custom value support
+    - Text column cleaning with custom input support
+    - Text formatting 
+    - Drop duplicate rows
+    - Drop rows or columns containing null values
 - Preview of cleaned data
-- Ability to download cleaned data
-- Restart session data
-- Improved UI and layout
+- Download cleaned CSV
+- Reset cleaned dataset to original dataset
+- Sample dataset for demo
 
-How to run app
-- Install dependencies:
-    - pip install streamlit pandas plotly
-- Run the app:
-    - type "Streamlit run csv_cleaner_app.py" to run file in streamlit
+## Planned features
+- Column-specific cleaning controls
+- Improved UI layout and styling
+- Additional data validation and profiling
+
+## How to run app
+- 1. Clone the repository
+- 2. Install dependencies
+    - pip install -r requirements.txt
+- 3. Run the Streamlit app
+    - streamlit run csv_cleaner_app.py
+
+## Notes
+- Requires Python 3.9+
+- All dependencies are listed in `requirements.txt`
+- The app opens automatically in your browser
 
 
 
