@@ -1,3 +1,5 @@
+![Image](https://github.com/user-attachments/assets/38e2c74b-8172-4db8-b9a5-8726604df10f)
+
 # Streamlit CSV Cleaner (Work in Progress)
 
 This project is currently under development, see planned features for future additions.
