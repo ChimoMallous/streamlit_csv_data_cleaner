@@ -1,8 +1,6 @@
 ![Image](https://github.com/user-attachments/assets/38e2c74b-8172-4db8-b9a5-8726604df10f)
 
-# Streamlit CSV Cleaner (Work in Progress)
-
-This project is currently under development, see planned features for future additions.
+# Streamlit CSV Cleaner
 
 ## Overview
 This program creates an interactive CSV cleaning tool built with streamlit, pandas, and plotly to allow the user to upload and preview a CSV file, analyze null values, visualize missing data, apply a wide range of cleaning operations, and then finally download that cleaned data without having to write any code.
