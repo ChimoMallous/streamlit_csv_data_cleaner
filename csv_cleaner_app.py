@@ -40,21 +40,20 @@ def load_data_preview(file):
     total_column_count = st.session_state.original_df.shape[1]
 
     # Display null data info
-    st.subheader("Original Data Statistics")
-    info_col1, info_col2, info_col3 = st.columns(3)
-
+    with st.container(border=True):
+        st.subheader("Original Data Statistics")
+        info_col1, info_col2, info_col3 = st.columns(3)
     info_col2.metric("Numerical Null Count:", f"{num_null_count:,}")
     info_col1.metric("Text Null Count:", f"{text_null_count:,}")
     info_col1.metric("Total Null Count:", f"{total_null_count:,}")
     info_col3.metric("Total Duplicate Count:", f"{total_duplicate_count:,}")
     info_col2.metric("Total Row Count:", f"{total_row_count:,}")
     info_col3.metric("Total Column Count:", f"{total_column_count:,}")
-    
-    
     st.divider()
 
     # Null columns charts
-    null_chart_col1, null_chart_col2 = st.columns(2)
+    with st.container(border=True):
+        null_chart_col1, null_chart_col2 = st.columns(2)
 
     with null_chart_col1:
         # Show which columns have nulls
@@ -115,8 +114,9 @@ def load_cleaned_preview(df):
     total_column_count = df.shape[1]
 
     # Display null information
-    st.subheader("Cleaned Data Statistics")
-    data_col1, data_col2, data_col3 = st.columns(3)
+    with st.container(border=True):
+        st.subheader("Cleaned Data Statistics")
+        data_col1, data_col2, data_col3 = st.columns(3)
     data_col2.metric("Numerical Null Count:", f"{num_null_count:,}")
     data_col1.metric("Text Null Count:", f"{text_null_count:,}")
     data_col1.metric("Total Null Count:", f"{total_null_count:,}")
